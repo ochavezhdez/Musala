@@ -1,0 +1,37 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>My articles</mat-card-title>
+  </mat-card-header>
+  <mat-card-content *ngIf="isEmptyList()">
+    <mat-form-field>
+      <input matInput (keyup)="find($event.target.value)" placeholder="Find by article's title">
+    </mat-form-field>
+    <table>
+      <thead>
+      <tr>
+        <th>Actions</th>
+        <th>Author</th>
+        <th>Title</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let article of articlesPagined">
+        <td>
+          <button mat-icon-button title="Show" (click)="showUserArticle(article)">
+            <mat-icon svgIcon="page-layout-body"></mat-icon>
+          </button>
+        </td>
+        <td>{{article.user.userName}}</td>
+        <td>{{article.title}}</td>
+      </tr>
+      </tbody>
+    </table>
+    <mat-paginator [length]="articlesFiltered?.length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions"
+                   [showFirstLastButtons]="true" (page)="page($event)"></mat-paginator>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-icon-button title="Add" (click)="addArticle()">
+      <mat-icon svgIcon="plus"></mat-icon>
+    </button>
+  </mat-card-actions>
+</mat-card>

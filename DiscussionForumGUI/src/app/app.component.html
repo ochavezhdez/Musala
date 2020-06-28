@@ -1,0 +1,9 @@
+<mat-toolbar color="primary">
+  <h1>
+    Articles discussion
+  </h1>
+  <button mat-button routerLink="list-user-article" *ngIf="isAuthenticate()">My articles</button>
+  <button mat-button routerLink="list-article" *ngIf="isAuthenticate()">All users articles</button>
+  <button mat-button routerLink="/" *ngIf="isAuthenticate()">Logout</button>
+</mat-toolbar>
+<router-outlet></router-outlet>
